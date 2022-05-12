@@ -1,0 +1,27 @@
+{
+  "name": "jangaraev/laravel-impressionable",
+  "description": "Views count for Eloquent models for Laravel",
+  "keywords": ["laravel", "php", "impressions", "views", "cms"],
+  "homepage": "https://github.com/jangaraev/laravel-impressionable",
+  "authors": [
+    {
+      "name": "Janur Jangaraev",
+      "email": "janur.jangaraev@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "illuminate/database": "^7.0|^8.0|^9.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.0.*|^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Jangaraev\\LaravelImpressionable\\": "src"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
