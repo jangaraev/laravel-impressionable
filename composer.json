@@ -4,6 +4,7 @@
   "description": "Views count for Eloquent models for Laravel",
   "keywords": ["laravel", "php", "impressions", "views", "cms"],
   "homepage": "https://github.com/jangaraev/laravel-impressionable",
+  "license": "MIT",
   "authors": [
     {
       "name": "Janur Jangaraev",
