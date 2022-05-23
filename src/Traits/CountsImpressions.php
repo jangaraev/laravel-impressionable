@@ -2,11 +2,14 @@
 
 namespace Jangaraev\LaravelImpressionable\Traits;
 
+use Jangaraev\EloquentModelAdvisoryLock\AppliesAdvisoryLock;
 use Jangaraev\LaravelImpressionable\Models\Impression;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait CountsImpressions
 {
+    use AppliesAdvisoryLock;
+
     public function morphImpressions(): MorphMany
     {
         return $this->morphMany(Impression::class, 'impressionable');
@@ -25,7 +28,7 @@ trait CountsImpressions
         if (!userAgentIsBot() && $this->todaysImpressions->isEmpty()) {
             $result = (bool)$this->increment('impressions');
 
-            //static::advisoryLock(fn () => $this->morphImpressions()->firstOrCreate(['side' => 'front']));
+            static::advisoryLock(fn () => $this->morphImpressions()->firstOrCreate());
 
             return $result;
         }
