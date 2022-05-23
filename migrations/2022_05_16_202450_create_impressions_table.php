@@ -9,11 +9,10 @@ class CreateImpressionsTable extends Migration
     public function up()
     {
         Schema::create('impressions', function (Blueprint $table) {
-            $table->date('date');
             $table->morphs('impressionable');
-            $table->bigInteger('ip');
+            $table->bigInteger('value')->unsigned()->default(0);
 
-            $table->unique(['impressionable_type', 'impressionable_id', 'ip', 'date']);
+            $table->unique(['impressionable_type', 'impressionable_id']);
         });
     }
 

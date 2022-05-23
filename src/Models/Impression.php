@@ -3,6 +3,7 @@
 namespace Jangaraev\LaravelImpressionable\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Impression extends Model
@@ -12,18 +13,19 @@ class Impression extends Model
     public $timestamps = false;
 
 
-    public static function boot()
-    {
-        parent::boot();
-
-        self::creating(function ($model) {
-            $model->ip = ip2long(request()->ip());
-            $model->date = now()->toDateString();
-        });
-    }
-
     public function impressionable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function dailyHits(): HasMany
+    {
+        return $this->hasMany(ImpressionDailyHit::class);
+    }
+
+
+    public function getImpressionsAttribute(): int
+    {
+        return $this->value ?? 0;
     }
 }
